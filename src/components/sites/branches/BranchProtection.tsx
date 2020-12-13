@@ -83,7 +83,7 @@ export function BranchProtection({
         <div>
           protected (user name is
           {' '}
-          <strong>root</strong>
+          <strong>user</strong>
           )
         </div>
       </Toggle>
