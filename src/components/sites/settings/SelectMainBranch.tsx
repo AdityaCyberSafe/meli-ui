@@ -53,7 +53,7 @@ export function SelectMainBranch({ siteId }: {
         control={control}
         name="mainBranch"
         rules={{}}
-        defaultValue={undefined}
+        defaultValue={null}
         render={({ value, onChange }) => (
           <CustomSelect
             options={branches?.map(b => ({
