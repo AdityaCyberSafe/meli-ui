@@ -1,6 +1,4 @@
-import {
-  FormProvider, useFieldArray, useForm,
-} from 'react-hook-form';
+import { Controller, FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useParams } from 'react-router-dom';
@@ -18,6 +16,8 @@ import { InputError } from '../../../commons/components/forms/InputError';
 import { useMountedState } from '../../../commons/hooks/use-mounted-state';
 import { CopyToClipboard } from '../../../commons/components/CopyToClipboard';
 import { SelectMainBranch } from './SelectMainBranch';
+import { Toggle } from '../../../commons/components/forms/Toggle';
+import { DocsLink } from '../../../commons/components/DocsLink';
 
 interface Settings {
   name: string;
@@ -155,6 +155,22 @@ export function SiteSettings() {
           <div className="card-header no-border d-flex justify-content-between">
             <strong>Main branch</strong>
             <SelectMainBranch siteId={siteId} />
+          </div>
+        </div>
+
+        <div className="mt-4 card">
+          <div className="card-header no-border">
+            <Controller
+              control={control}
+              name="spa"
+              render={({ value, onChange }) => (
+                <Toggle value={value} onChange={onChange} className="w-100">
+                  Single page application (SPA) mode
+                  <DocsLink href="https://docs.meli.sh/get-started/single-page-applications-spa" className="ml-2" />
+                </Toggle>
+              )}
+              defaultValue={false}
+            />
           </div>
         </div>
 
