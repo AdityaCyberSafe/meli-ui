@@ -127,6 +127,31 @@ export function SiteSettings() {
         </div>
 
         <div className="mt-4 card">
+          <div className="card-header no-border d-flex justify-content-between">
+            <strong>Main branch</strong>
+            <SelectMainBranch siteId={siteId} />
+          </div>
+        </div>
+
+        <div className="mt-4 card">
+          <div className="card-header no-border">
+            <Controller
+              control={control}
+              name="spa"
+              render={({ value, onChange }) => (
+                <Toggle value={value} onChange={onChange} className="w-100">
+                  <div className="d-flex justify-content-between flex-grow-1">
+                    <strong>Single page application (SPA) mode</strong>
+                    <DocsLink href="https://docs.meli.sh/get-started/single-page-applications-spa" className="ml-2" />
+                  </div>
+                </Toggle>
+              )}
+              defaultValue={false}
+            />
+          </div>
+        </div>
+
+        <div className="mt-4 card">
           <div className="card-header">
             <strong>Domains</strong>
           </div>
@@ -148,29 +173,6 @@ export function SiteSettings() {
                 Add domain
               </button>
             </div>
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header no-border d-flex justify-content-between">
-            <strong>Main branch</strong>
-            <SelectMainBranch siteId={siteId} />
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header no-border">
-            <Controller
-              control={control}
-              name="spa"
-              render={({ value, onChange }) => (
-                <Toggle value={value} onChange={onChange} className="w-100">
-                  Single page application (SPA) mode
-                  <DocsLink href="https://docs.meli.sh/get-started/single-page-applications-spa" className="ml-2" />
-                </Toggle>
-              )}
-              defaultValue={false}
-            />
           </div>
         </div>
 

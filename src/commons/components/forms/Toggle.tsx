@@ -67,7 +67,7 @@ export function Toggle({
         </>
       ) : (
         <>
-          <div>
+          <div className="d-flex flex-grow-1">
             {children}
           </div>
           <div className="ml-2">
