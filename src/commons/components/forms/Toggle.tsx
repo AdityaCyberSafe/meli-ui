@@ -67,7 +67,9 @@ export function Toggle({
         </>
       ) : (
         <>
-          {children}
+          <div>
+            {children}
+          </div>
           <div className="ml-2">
             {icon}
           </div>

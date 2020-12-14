@@ -80,12 +80,10 @@ export function BranchProtection({
         loading={branch.hasPassword && loading}
         className={classNames(className, 'w-100')}
       >
-        <div>
-          protected (user name is
-          {' '}
-          <strong>user</strong>
-          )
-        </div>
+        protected (user name is
+        {' '}
+        <strong>user</strong>
+        )
       </Toggle>
       <CardModal isOpen={isOpen} closeModal={closeModal} title="Set branch password">
         <form onSubmit={handleSubmit(setPassword)}>
