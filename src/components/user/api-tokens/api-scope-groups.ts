@@ -55,6 +55,8 @@ export const apiScopeGroups: { [scope: string]: ApiScope[] } = {
     ApiScope.site_delete,
     ApiScope.site_read,
     ApiScope.site_update,
+    ApiScope.site_password_set,
+    ApiScope.site_password_remove,
     ApiScope.site_name_validate,
     ApiScope.site_branch_add,
     ApiScope.site_branch_delete,

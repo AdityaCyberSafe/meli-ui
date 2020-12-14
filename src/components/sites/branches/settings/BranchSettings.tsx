@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { BranchProtection } from '../BranchProtection';
+import { BranchPassword } from '../BranchPassword';
 import { useBranch } from '../BranchView';
 import { BranchGeneralSettings } from './BranchGeneralSettings';
 
@@ -11,7 +11,7 @@ export function BranchSettings() {
     <>
       <div className="card">
         <div className="card-header no-border">
-          <BranchProtection
+          <BranchPassword
             siteId={siteId}
             branch={branch}
             onChange={setBranch}

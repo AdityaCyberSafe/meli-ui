@@ -4,24 +4,23 @@ import { toast } from 'react-toastify';
 import classNames from 'classnames';
 import { Toggle } from '../../../commons/components/forms/Toggle';
 import { CardModal } from '../../../commons/components/modals/CardModal';
-import { Branch } from './branch';
 import { Button } from '../../../commons/components/Button';
 import { InputError } from '../../../commons/components/forms/InputError';
 import { maxLength, required } from '../../../commons/components/forms/form-constants';
 import { useEnv } from '../../../providers/EnvProvider';
 import { axios } from '../../../providers/axios';
 import { randomString } from '../../../commons/utils/random-string';
+import { Site } from '../site';
 
 interface FormData {
   password: string;
 }
 
-export function BranchProtection({
-  siteId, branch, onChange, className,
+export function SitePassword({
+  site, onChange, className,
 }: {
-  siteId: string;
-  branch: Branch;
-  onChange: (branch: Branch) => void;
+  site: Site;
+  onChange: (site: Site) => void;
   className?;
 }) {
   const [randomSecret, setRandomSecret] = useState(randomString(16));
@@ -46,13 +45,13 @@ export function BranchProtection({
   const setPassword = (formData: FormData) => {
     setLoading(true);
     axios
-      .put<Branch>(`${env.MELI_API_URL}/api/v1/sites/${siteId}/branches/${branch._id}/password`, formData)
+      .put<Site>(`${env.MELI_API_URL}/api/v1/sites/${site._id}/password`, formData)
       .then(({ data }) => {
         onChange(data);
         closeModal();
       })
       .catch(err => {
-        toast(`Could not rename branch: ${err}`, {
+        toast(`Could not set site password: ${err}`, {
           type: 'error',
         });
       })
@@ -62,10 +61,10 @@ export function BranchProtection({
   const removePassword = () => {
     setLoading(true);
     axios
-      .delete<Branch>(`${env.MELI_API_URL}/api/v1/sites/${siteId}/branches/${branch._id}/password`)
+      .delete<Site>(`${env.MELI_API_URL}/api/v1/sites/${site._id}/password`)
       .then(({ data }) => onChange(data))
       .catch(err => {
-        toast(`Could not rename branch: ${err}`, {
+        toast(`Could not remove site password: ${err}`, {
           type: 'error',
         });
       })
@@ -75,17 +74,24 @@ export function BranchProtection({
   return (
     <>
       <Toggle
-        value={!!branch.hasPassword}
-        onChange={() => (branch.hasPassword ? removePassword() : openModal())}
-        loading={branch.hasPassword && loading}
-        className={classNames(className, 'w-100')}
+        value={!!site.hasPassword}
+        onChange={() => (site.hasPassword ? removePassword() : openModal())}
+        loading={site.hasPassword && loading}
+        className={classNames(className, 'w-100 font-weight-bold')}
       >
-        protected (user name is
+        Password protection
         {' '}
-        <strong>user</strong>
-        )
+        {site.hasPassword && (
+          <>
+            {' '}
+            (user name is
+            {' '}
+            <code>user</code>
+            )
+          </>
+        )}
       </Toggle>
-      <CardModal isOpen={isOpen} closeModal={closeModal} title="Set branch password">
+      <CardModal isOpen={isOpen} closeModal={closeModal} title="Set site password">
         <form onSubmit={handleSubmit(setPassword)}>
           <div className="form-group">
             <label htmlFor="password" className="form-label">Password</label>
@@ -108,7 +114,7 @@ export function BranchProtection({
             <Button
               type="submit"
               className="btn btn-primary"
-              loading={loading && !branch.hasPassword}
+              loading={loading && !site.hasPassword}
             >
               Save
             </Button>

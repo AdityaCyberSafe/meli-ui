@@ -18,6 +18,7 @@ import { CopyToClipboard } from '../../../commons/components/CopyToClipboard';
 import { SelectMainBranch } from './SelectMainBranch';
 import { Toggle } from '../../../commons/components/forms/Toggle';
 import { DocsLink } from '../../../commons/components/DocsLink';
+import { SitePassword } from './SitePassword';
 
 interface Settings {
   name: string;
@@ -65,118 +66,129 @@ export function SiteSettings() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={styles.form}
-      >
+    <>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.form}
+        >
 
-        <div className="form-group d-flex justify-content-end">
-          {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
-          {isDirty && (
-            <button
-              type="button"
-              className="btn btn-outline-primary animate fadeIn"
-              onClick={() => reset(site)}
-            >
-              Discard
-            </button>
-          )}
-          <Button
-            type="submit"
-            className="ml-3 btn btn-primary"
-            loading={loading}
-            disabled={!isDirty}
-          >
-            Save
-          </Button>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header no-border d-flex justify-content-between">
-            <strong>Site ID</strong>
-            <CopyToClipboard value={site._id}>
-              <code>{site._id}</code>
-            </CopyToClipboard>
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header">
-            <strong>Site</strong>
-          </div>
-          <div className="card-body">
-            <SiteNameInput previousName={site.name} />
-            <div className="form-group">
-              <label htmlFor="color" className="form-label">Color</label>
-              <input
-                type="color"
-                id="color"
-                name="color"
-                ref={register({
-                  required,
-                  pattern: COLOR_PATTERN,
-                })}
-                className="form-control"
-                autoComplete="off"
-                defaultValue="#000000"
-              />
-              <InputError error={errors} path="color" />
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header no-border d-flex justify-content-between">
-            <strong>Main branch</strong>
-            <SelectMainBranch siteId={siteId} />
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header no-border">
-            <Controller
-              control={control}
-              name="spa"
-              render={({ value, onChange }) => (
-                <Toggle value={value} onChange={onChange} className="w-100">
-                  <div className="d-flex justify-content-between flex-grow-1">
-                    <strong>Single page application (SPA) mode</strong>
-                    <DocsLink href="https://docs.meli.sh/get-started/single-page-applications-spa" className="ml-2" />
-                  </div>
-                </Toggle>
-              )}
-              defaultValue={false}
-            />
-          </div>
-        </div>
-
-        <div className="mt-4 card">
-          <div className="card-header">
-            <strong>Domains</strong>
-          </div>
-          <div className="card-body">
-            <div className={styles.domains}>
-              {domains.fields.map((item, index) => (
-                <DomainForm
-                  key={item.id}
-                  item={item as SiteDomain}
-                  index={index}
-                  remove={() => domains.remove(index)}
-                />
-              ))}
+          <div className="form-group d-flex justify-content-end">
+            {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
+            {isDirty && (
               <button
                 type="button"
-                className={classNames('mt-3', styles.add)}
-                onClick={() => domains.append({})}
+                className="btn btn-outline-primary animate fadeIn"
+                onClick={() => reset(site)}
               >
-                Add domain
+                Discard
               </button>
+            )}
+            <Button
+              type="submit"
+              className="ml-3 btn btn-primary"
+              loading={loading}
+              disabled={!isDirty}
+            >
+              Save
+            </Button>
+          </div>
+
+          <div className="mt-4 card">
+            <div className="card-header no-border d-flex justify-content-between">
+              <strong>Site ID</strong>
+              <CopyToClipboard value={site._id}>
+                <code>{site._id}</code>
+              </CopyToClipboard>
             </div>
           </div>
-        </div>
 
-      </form>
-    </FormProvider>
+          <div className="mt-4 card">
+            <div className="card-header">
+              <strong>General</strong>
+            </div>
+            <div className="card-body">
+              <SiteNameInput previousName={site.name} />
+              <div className="form-group">
+                <label htmlFor="color" className="form-label">Color</label>
+                <input
+                  type="color"
+                  id="color"
+                  name="color"
+                  ref={register({
+                    required,
+                    pattern: COLOR_PATTERN,
+                  })}
+                  className="form-control"
+                  autoComplete="off"
+                  defaultValue="#000000"
+                />
+                <InputError error={errors} path="color" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 card">
+            <div className="card-header no-border d-flex justify-content-between">
+              <strong>Main branch</strong>
+              <SelectMainBranch siteId={siteId} />
+            </div>
+          </div>
+
+          <div className="mt-4 card">
+            <div className="card-header no-border">
+              <Controller
+                control={control}
+                name="spa"
+                render={({ value, onChange }) => (
+                  <Toggle value={value} onChange={onChange} className="w-100">
+                    <div className="d-flex justify-content-between flex-grow-1">
+                      <strong>Single page application (SPA) mode</strong>
+                      <DocsLink href="https://docs.meli.sh/get-started/single-page-applications-spa" className="ml-2" />
+                    </div>
+                  </Toggle>
+                )}
+                defaultValue={false}
+              />
+            </div>
+          </div>
+
+          <div className="mt-4 card">
+            <div className="card-header">
+              <strong>Domains</strong>
+            </div>
+            <div className="card-body">
+              <div className={styles.domains}>
+                {domains.fields.map((item, index) => (
+                  <DomainForm
+                    key={item.id}
+                    item={item as SiteDomain}
+                    index={index}
+                    remove={() => domains.remove(index)}
+                  />
+                ))}
+                <button
+                  type="button"
+                  className={classNames('mt-3', styles.add)}
+                  onClick={() => domains.append({})}
+                >
+                  Add domain
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </FormProvider>
+
+      <div className="card mt-4">
+        <div className="card-header no-border">
+          <SitePassword
+            site={site}
+            onChange={setSite}
+          />
+        </div>
+      </div>
+    </>
   );
 }

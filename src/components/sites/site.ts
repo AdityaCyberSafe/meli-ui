@@ -31,4 +31,5 @@ export interface Site {
   domains: SiteDomain[];
   branches: Branch[];
   url: string;
+  hasPassword: boolean;
 }
