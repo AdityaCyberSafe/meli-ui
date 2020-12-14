@@ -1,3 +1,20 @@
+# [1.0.0-beta.4](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2020-12-14)
+
+
+### Bug Fixes
+
+* **site:** remove warning for missing default value on main branch ([22ed74e](https://github.com/getmeli/meli-ui/commit/22ed74e32fd913085a9d035bad627abe088297cd))
+* improve domain form ([f3f205f](https://github.com/getmeli/meli-ui/commit/f3f205f0bbcde834b9a79c471baba1c90c426836))
+* wrong user name for branch password ([074cec4](https://github.com/getmeli/meli-ui/commit/074cec49b11433f1aad8e86c2b714c228c7b0f0c))
+
+
+### Features
+
+* allow using subpaths for api url ([13cb7dd](https://github.com/getmeli/meli-ui/commit/13cb7ddf99103c474324b20c479815daebc85091))
+* enhance style of branch protection and show username ([a1ff45c](https://github.com/getmeli/meli-ui/commit/a1ff45cff9f2ce5b08c9d2685ddb39c257290fa2))
+* single page application mode ([a5d3d57](https://github.com/getmeli/meli-ui/commit/a5d3d57049506381cf3e9dfc59f5aab3bc5c480e))
+* site level password ([d50378a](https://github.com/getmeli/meli-ui/commit/d50378a721b8fe3c717bc8c30a44ee984e3c8ae7))
+
 # [1.0.0-beta.3](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2020-12-12)
 
 
