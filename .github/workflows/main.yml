@@ -5,6 +5,8 @@ env:
   TMP_DOCKER_IMAGE: "getmeli/ui/${{ github.ref }}"
   DOCKER_IMAGE: "getmeli/ui"
   IS_RELEASE_BRANCH: "${{ github.ref == 'refs/heads/latest' || github.ref == 'refs/heads/next' || github.ref == 'refs/heads/beta' }}"
+  GIT_AUTHOR_NAME: "meli-release-bot"
+  GIT_COMMITTER_NAME: "meli-release-bot"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +26,7 @@ jobs:
           echo "Next release version is $(cat VERSION)"
         env:
           RELEASE_DEPLOY_KEY: ${{ secrets.RELEASE_DEPLOY_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: "Lint"
         run: npm run lint
       - name: "test"
@@ -43,7 +45,7 @@ jobs:
           npx semantic-release -r $GITHUB_REPOSITORY_SSH_URL
         env:
           RELEASE_DEPLOY_KEY: ${{ secrets.RELEASE_DEPLOY_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: "publish dockerhub"
         if: ${{ env.IS_RELEASE_BRANCH == 'true' }}
         run: |
