@@ -42,7 +42,7 @@ export function DeleteTeam({
         title="Delete team"
         closeModal={() => setIsOpen(false)}
       >
-        <p>Are you sure you want to delete this token ?</p>
+        <p>Are you sure you want to delete this team ? Sites and related data (releases, branches, etc.) will be deleted.</p>
         <div className="d-flex align-items-center">
           <button
             className="btn btn-outline-primary"
