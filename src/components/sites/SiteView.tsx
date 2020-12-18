@@ -1,9 +1,5 @@
-import React, {
-  createContext, useContext, useEffect, useState,
-} from 'react';
-import {
-  Redirect, Route, Switch, useParams, useRouteMatch,
-} from 'react-router-dom';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Redirect, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEllipsisV, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -165,7 +161,7 @@ export function SiteView() {
                     </HookProvider>
                   )}
                 />
-                <Route path={`${path}/settings`} exact component={SiteSettings} />
+                <Route path={`${path}/settings`} component={SiteSettings} />
                 <Route component={NotFound} />
               </Switch>
             </Context.Provider>

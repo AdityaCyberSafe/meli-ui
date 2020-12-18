@@ -1,7 +1,7 @@
 import { Controller, FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { useParams } from 'react-router-dom';
+import { Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './SiteSettings.module.scss';
 import { Button } from '../../../commons/components/Button';
@@ -19,6 +19,9 @@ import { SelectMainBranch } from './SelectMainBranch';
 import { Toggle } from '../../../commons/components/forms/Toggle';
 import { DocsLink } from '../../../commons/components/DocsLink';
 import { SitePassword } from './SitePassword';
+import { NavPills } from '../../../commons/components/NavPills';
+import { SettingsIcon } from '../../icons/SettingsIcon';
+import { SecurityIcon } from '../../icons/SecurityIcon';
 
 interface Settings {
   name: string;
@@ -26,7 +29,7 @@ interface Settings {
   domains: SiteDomain[];
 }
 
-export function SiteSettings() {
+function GeneralSettings() {
   const env = useEnv();
   const { siteId } = useParams();
   const { site, setSite } = useSite();
@@ -104,12 +107,7 @@ export function SiteSettings() {
                 />
                 <InputError error={errors} path="color" />
               </div>
-            </div>
-          </div>
 
-          <div className="mt-4 card">
-            <div className="card-header no-border d-flex justify-content-between">
-              <strong>Main branch</strong>
               <SelectMainBranch siteId={siteId} />
             </div>
           </div>
@@ -180,15 +178,59 @@ export function SiteSettings() {
 
         </form>
       </FormProvider>
+    </>
+  );
+}
 
-      <div className="card mt-4">
-        <div className="card-header no-border">
-          <SitePassword
-            site={site}
-            onChange={setSite}
-          />
-        </div>
+function SecuritySettings() {
+  const { site, setSite } = useSite();
+
+  return (
+    <div className="card mt-4">
+      <div className="card-header no-border">
+        <SitePassword
+          site={site}
+          onChange={setSite}
+        />
       </div>
+    </div>
+  );
+}
+
+export function SiteSettings() {
+  const { path, url } = useRouteMatch();
+  return (
+    <>
+      <div className="d-flex justify-content-end">
+        <NavPills links={[
+          {
+            to: url,
+            label: (
+              <>
+                <SettingsIcon className="mr-2" />
+                {' '}
+                General
+              </>
+            ),
+            exact: true,
+          },
+          {
+            to: `${url}/security`,
+            label: (
+              <>
+                <SecurityIcon className="mr-2" />
+                {' '}
+                Security
+              </>
+            ),
+          },
+        ]}
+        />
+      </div>
+      <Switch>
+        <Route path={path} exact component={GeneralSettings} />
+        <Route path={`${path}/security`} exact component={SecuritySettings} />
+      </Switch>
     </>
   );
 }

@@ -5,7 +5,6 @@ import { useMountedState } from '../../../commons/hooks/use-mounted-state';
 import { Branch } from '../branches/branch';
 import { axios } from '../../../providers/axios';
 import { CustomSelect } from '../../../commons/components/CustomSelect';
-import styles from './SelectMainBranch.module.scss';
 import { Loader } from '../../../commons/components/Loader';
 import { AlertError } from '../../../commons/components/AlertError';
 import { InputError } from '../../../commons/components/forms/InputError';
@@ -48,7 +47,8 @@ export function SelectMainBranch({ siteId }: {
   ) : error ? (
     <AlertError error={error} />
   ) : (
-    <div>
+    <div className="form-group">
+      <label htmlFor="mainBranch">Main branch</label>
       <Controller
         control={control}
         name="mainBranch"
@@ -56,13 +56,13 @@ export function SelectMainBranch({ siteId }: {
         defaultValue={null}
         render={({ value, onChange }) => (
           <CustomSelect
+            id="mainBranch"
             options={branches?.map(b => ({
               label: b.name, value: b,
             }))}
             onChange={val => {
               onChange(val?._id);
             }}
-            className={styles.select}
             value={branches?.find(b => b._id === value)}
           />
         )}
