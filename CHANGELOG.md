@@ -1,3 +1,18 @@
+# [1.0.0-beta.5](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-12-18)
+
+
+### Bug Fixes
+
+* **ux:** move save buttons to the bottom of the forms ([89dec4a](https://github.com/getmeli/meli-ui/commit/89dec4a16c9f31f5eab41ef612913a042deb06c2))
+* confusing toggle off state ([#163](https://github.com/getmeli/meli-ui/issues/163)) ([fc8f641](https://github.com/getmeli/meli-ui/commit/fc8f6417fc776b87e501da7b30303f51a35cab16))
+* typo in delete team label ([b557548](https://github.com/getmeli/meli-ui/commit/b557548da927f83caced2710c7c0a7a954a4f5f1))
+
+
+### Features
+
+* allow any branch name ([fe0df3e](https://github.com/getmeli/meli-ui/commit/fe0df3edb349bdef5ab183fcc995cbd208d8a290))
+* make forms more obvious ([4d562ab](https://github.com/getmeli/meli-ui/commit/4d562abb64ef8d9f82a5ce9a1ace630fcb45b743))
+
 # [1.0.0-beta.4](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2020-12-14)
 
 
