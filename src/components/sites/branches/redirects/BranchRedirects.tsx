@@ -110,29 +110,6 @@ export function BranchRedirects() {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(updateFiles)}>
 
-        <div className="form-group d-flex justify-content-end">
-          {isDirty && (
-            <Button
-              type="button"
-              className="btn btn-outline-primary animate fadeIn"
-              onClick={() => reset({
-                redirects,
-              })}
-              disabled={updating}
-            >
-              Discard
-            </Button>
-          )}
-          <Button
-            type="submit"
-            className="ml-3 btn btn-primary"
-            loading={loading}
-            disabled={!isDirty || updating}
-          >
-            Save
-          </Button>
-        </div>
-
         {formFiles.fields.map((branchFile, index) => (
           <BranchRedirectForm
             key={branchFile.path || branchFile.id}
@@ -151,6 +128,29 @@ export function BranchRedirects() {
         >
           Add file
         </button>
+
+        <div className="form-group d-flex justify-content-end">
+          {isDirty && (
+            <Button
+              type="button"
+              className="mt-3 btn btn-outline-primary animate fadeIn"
+              onClick={() => reset({
+                redirects,
+              })}
+              disabled={updating}
+            >
+              Discard
+            </Button>
+          )}
+          <Button
+            type="submit"
+            className="mt-3 ml-3 btn btn-primary"
+            loading={loading}
+            disabled={!isDirty || updating}
+          >
+            Save
+          </Button>
+        </div>
       </form>
     </FormProvider>
   );

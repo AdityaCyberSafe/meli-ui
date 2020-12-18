@@ -73,27 +73,6 @@ export function SiteSettings() {
           className={styles.form}
         >
 
-          <div className="form-group d-flex justify-content-end">
-            {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
-            {isDirty && (
-              <button
-                type="button"
-                className="btn btn-outline-primary animate fadeIn"
-                onClick={() => reset(site)}
-              >
-                Discard
-              </button>
-            )}
-            <Button
-              type="submit"
-              className="ml-3 btn btn-primary"
-              loading={loading}
-              disabled={!isDirty}
-            >
-              Save
-            </Button>
-          </div>
-
           <div className="mt-4 card">
             <div className="card-header no-border d-flex justify-content-between">
               <strong>Site ID</strong>
@@ -176,6 +155,27 @@ export function SiteSettings() {
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className="form-group d-flex justify-content-end">
+            {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
+            {isDirty && (
+              <button
+                type="button"
+                className="mt-4 btn btn-outline-primary animate fadeIn"
+                onClick={() => reset(site)}
+              >
+                Discard
+              </button>
+            )}
+            <Button
+              type="submit"
+              className="mt-4 ml-3 btn btn-primary"
+              loading={loading}
+              disabled={!isDirty}
+            >
+              Save
+            </Button>
           </div>
 
         </form>

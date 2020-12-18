@@ -16,5 +16,5 @@
 ## Development
 
 1. Install dependencies: `npm install`
-1. Update `env.json` to point to your Meli server
+1. Update `public/env.txt` to point to your Meli server
 1. Start the app: `npm start`

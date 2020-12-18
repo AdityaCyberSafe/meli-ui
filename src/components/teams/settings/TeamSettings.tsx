@@ -59,27 +59,6 @@ export function TeamSettings() {
         className={styles.form}
       >
 
-        <div className="form-group d-flex justify-content-end">
-          {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
-          {isDirty && (
-            <button
-              type="button"
-              className="btn btn-outline-primary animate fadeIn"
-              onClick={() => reset(team)}
-            >
-              Discard
-            </button>
-          )}
-          <Button
-            type="submit"
-            className="ml-3 btn btn-primary"
-            loading={loading}
-            disabled={!isDirty}
-          >
-            Save
-          </Button>
-        </div>
-
         <div className="mt-4 card">
           <div className="card-header">
             <strong>Team</strong>
@@ -104,6 +83,27 @@ export function TeamSettings() {
               <InputError error={errors} path="color" />
             </div>
           </div>
+        </div>
+
+        <div className="form-group d-flex justify-content-end">
+          {/* TODO use http://reactcommunity.org/react-transition-group/css-transition */}
+          {isDirty && (
+            <button
+              type="button"
+              className="mt-4 btn btn-outline-primary animate fadeIn"
+              onClick={() => reset(team)}
+            >
+              Discard
+            </button>
+          )}
+          <Button
+            type="submit"
+            className="mt-4 ml-3 btn btn-primary"
+            loading={loading}
+            disabled={!isDirty}
+          >
+            Save
+          </Button>
         </div>
 
       </form>
