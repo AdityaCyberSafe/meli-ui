@@ -1,6 +1,6 @@
-FROM nginx:1.17-alpine
+FROM caddy:2-alpine
 
-COPY docker/nginx.default.conf /etc/nginx/conf.d/default.conf
+COPY docker/Caddyfile /etc/caddy/Caddyfile
 COPY docker/entrypoint.sh /entrypoint.sh
 COPY docker/env.sh /env.sh
 
@@ -11,4 +11,4 @@ COPY ./build /www
 LABEL maintainer="meli.sh"
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

@@ -1,0 +1,5 @@
+:80
+
+file_server
+root * /www
+try_files {path} /index.html
