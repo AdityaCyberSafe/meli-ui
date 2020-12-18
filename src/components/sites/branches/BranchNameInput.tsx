@@ -2,9 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { Env, useEnv } from '../../../providers/EnvProvider';
-import {
-  isSubdomain, maxLength, required,
-} from '../../../commons/components/forms/form-constants';
+import { maxLength, required } from '../../../commons/components/forms/form-constants';
 import { debounceTime } from '../../../utils/debounce-time';
 import { InputError } from '../../../commons/components/forms/InputError';
 import { axios } from '../../../providers/axios';
@@ -41,7 +39,6 @@ export function BranchNameInput({ setInputRef }: {
     register({
       required,
       maxLength: maxLength(),
-      pattern: isSubdomain,
       validate: debounceTime<string | undefined>(val => validateName(env, site._id, val), 300),
     })(input);
   };
