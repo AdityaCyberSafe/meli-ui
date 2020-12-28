@@ -1,27 +1,20 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
-import {
-  debounceTime, distinctUntilChanged, filter,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { toast } from 'react-toastify';
 import styles from './SearchModal.module.scss';
-import { useEnv } from '../../../providers/EnvProvider';
 import { routerHistory } from '../../../providers/history';
 import { Loader } from '../../../commons/components/Loader';
-import { getTeamSites } from '../get-team-sites';
 import { SiteCard } from '../SiteCard';
 import { CardModal } from '../../../commons/components/modals/CardModal';
-import { useMountedState } from '../../../commons/hooks/use-mounted-state';
+import { useSites } from '../use-sites';
 
 export function SearchModal({ isOpen, closeModal }: { isOpen: boolean; closeModal: () => void }) {
-  const env = useEnv();
   const search$ = useRef(new BehaviorSubject(''));
-  const [loading, setLoading] = useMountedState(false);
-  const [sites, setRepos] = useState<any[]>();
   const [searchInputRef, setSearchInputRef] = useState<HTMLInputElement>();
+
+  const { loading, error, data: sites, cb: listSites } = useSites();
 
   useEffect(() => {
     if (isOpen) {
@@ -32,20 +25,23 @@ export function SearchModal({ isOpen, closeModal }: { isOpen: boolean; closeModa
           distinctUntilChanged(),
         )
         .subscribe(value => {
-          setLoading(true);
-          getTeamSites(env, value)
-            .then(({ items }) => items)
-            .then(setRepos)
-            .catch(err => toast(`Could not get repos: ${err}`, {
-              type: 'error',
-            }))
-            .finally(() => setLoading(false));
+          listSites({
+            search: value || undefined,
+            page: 0,
+            size: 10,
+          });
         });
-      return () => {
-        subs.unsubscribe();
-      };
+      return () => subs.unsubscribe();
     }
-  }, [search$, env, isOpen, setLoading]);
+  }, [search$, isOpen, listSites]);
+
+  useEffect(() => {
+    if (error) {
+      toast(`Could not search sites: ${error}`, {
+        type: 'error',
+      });
+    }
+  }, [error]);
 
   useEffect(() => {
     if (isOpen) {
@@ -86,11 +82,11 @@ export function SearchModal({ isOpen, closeModal }: { isOpen: boolean; closeModa
             </div>
             {sites && (
               <div className="mt-3">
-                {sites.length === 0 && (
+                {sites.items.length === 0 && (
                   <strong>No results</strong>
                 )}
                 <TransitionGroup>
-                  {sites.length !== 0 && sites.map(site => (
+                  {sites.items.length !== 0 && sites.items.map(site => (
                     <CSSTransition key={site._id} timeout={500} classNames="fade-down">
                       <div className="mb-2" onClick={() => onItemClick(site)}>
                         <SiteCard site={site} className="bg-light" />

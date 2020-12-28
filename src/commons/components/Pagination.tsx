@@ -6,8 +6,8 @@ import { queryParams } from '../../utils/query-params';
 import { routerHistory } from '../../providers/history';
 
 export interface PaginationData {
-  page: number;
-  size: number;
+  page?: number;
+  size?: number;
 }
 
 export function defaultPagination(): PaginationData {
