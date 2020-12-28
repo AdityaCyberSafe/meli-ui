@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-12-28)
+
+
+### Bug Fixes
+
+* search is broken ([959e9fe](https://github.com/getmeli/meli-ui/commit/959e9fe6f935eacb9a369b7aeb1d9bdd8c25fced))
+
 # [1.0.0-beta.5](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-12-18)
 
 
