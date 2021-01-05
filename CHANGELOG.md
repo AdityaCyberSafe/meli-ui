@@ -1,3 +1,10 @@
+# [1.0.0-beta.8](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2021-01-05)
+
+
+### Bug Fixes
+
+* update axios to avoid vulnerabilities ([1870cfb](https://github.com/getmeli/meli-ui/commit/1870cfbcd614fe32239a0367e613c050d4525d92))
+
 # [1.0.0-beta.7](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-01-05)
 
 
