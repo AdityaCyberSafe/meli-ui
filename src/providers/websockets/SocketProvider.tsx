@@ -19,6 +19,7 @@ export function SocketProvider(props) {
     const url = new URL(env.MELI_API_URL);
     const sock: SocketIOClient.Socket = openSocket({
       host: url.host,
+      port: url.port,
       path: `${url.pathname}/socket.io`.replace(/\/+/g, '/'),
       secure: url.protocol === 'https:',
     });
