@@ -1,3 +1,10 @@
+# [1.0.0-beta.7](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-01-05)
+
+
+### Bug Fixes
+
+* missing websocket port ([b701819](https://github.com/getmeli/meli-ui/commit/b7018194fe34233cb88ad329547d902b2fee28b9))
+
 # [1.0.0-beta.6](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-12-28)
 
 
