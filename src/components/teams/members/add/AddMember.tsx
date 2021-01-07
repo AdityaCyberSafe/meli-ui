@@ -79,7 +79,7 @@ export function AddMember({
     <>
       <CardModal
         isOpen={isOpen}
-        title="Delete branch"
+        title="Add member"
         closeModal={() => setIsOpen(false)}
         className={styles.modal}
       >
