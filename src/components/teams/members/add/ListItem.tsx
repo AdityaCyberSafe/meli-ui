@@ -6,13 +6,14 @@ import { axios } from '../../../../providers/axios';
 import { Loader } from '../../../../commons/components/Loader';
 import { OrgMember } from '../../../orgs/staff/members/org-member';
 import { useMountedState } from '../../../../commons/hooks/use-mounted-state';
+import { TeamMember } from '../team-member';
 
 export function ListItem({
   teamId, member, onAdded,
 }: {
   teamId: string;
   member: OrgMember;
-  onAdded: () => void;
+  onAdded: (teamMember: TeamMember) => void;
 }) {
   const [loading, setLoading] = useMountedState(false);
   const env = useEnv();
@@ -20,11 +21,11 @@ export function ListItem({
   const select = () => {
     setLoading(true);
     return axios
-      .put(`${env.MELI_API_URL}/api/v1/teams/${teamId}/members/${member._id}`, {
+      .put<TeamMember>(`${env.MELI_API_URL}/api/v1/teams/${teamId}/members/${member._id}`, {
         member: member._id,
       })
-      .then(() => {
-        onAdded();
+      .then(({ data }) => {
+        onAdded(data);
       })
       .catch(err => {
         toast(`Could not select branch: ${err}`, {

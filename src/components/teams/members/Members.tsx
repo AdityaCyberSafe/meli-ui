@@ -12,10 +12,9 @@ import { AddMember } from './add/AddMember';
 import { MemberView } from './MemberView';
 import styles from './Members.module.scss';
 import { TeamMemberIcon } from '../../icons/TeamMemberIcon';
-import { OrgMember } from '../../orgs/staff/members/org-member';
 import { useMountedState } from '../../../commons/hooks/use-mounted-state';
 
-function sortMembers(a: OrgMember, b: OrgMember): number {
+function sortMembers(a: TeamMember, b: TeamMember): number {
   return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
 }
 

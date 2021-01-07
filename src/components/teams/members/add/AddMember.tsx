@@ -13,6 +13,7 @@ import { ListItem } from './ListItem';
 import { useCurrentOrg } from '../../../../providers/OrgProvider';
 import { useMountedState } from '../../../../commons/hooks/use-mounted-state';
 import { IsAdmin } from '../../../auth/IsAdmin';
+import { TeamMember } from '../team-member';
 
 export function AddMember({
   teamId, className, children, onAdded,
@@ -20,7 +21,7 @@ export function AddMember({
   teamId: string;
   children: any;
   className?: string;
-  onAdded: (member: OrgMember) => void;
+  onAdded: (member: TeamMember) => void;
 }) {
   const [isOpen, setIsOpen] = useMountedState(false);
   const [initialLoad, setInitialLoad] = useState(true);
@@ -63,7 +64,7 @@ export function AddMember({
     });
   };
 
-  const onSelected = (member: OrgMember) => {
+  const onTeamMemberAdded = (member: TeamMember) => {
     setIsOpen(false);
     onAdded(member);
   };
@@ -100,7 +101,7 @@ export function AddMember({
                 key={item._id}
                 member={item}
                 teamId={teamId}
-                onAdded={() => onSelected(item)}
+                onAdded={onTeamMemberAdded}
               />
             ))}
             {canLoadMore && (
