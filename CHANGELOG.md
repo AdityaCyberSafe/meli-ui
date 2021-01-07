@@ -1,3 +1,10 @@
+# [1.0.0-beta.9](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2021-01-07)
+
+
+### Bug Fixes
+
+* typo in add member modal ([4fe3fb9](https://github.com/getmeli/meli-ui/commit/4fe3fb9f78ac326b8aca27c289ce5fc6fd9f9ae6))
+
 # [1.0.0-beta.8](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2021-01-05)
 
 
