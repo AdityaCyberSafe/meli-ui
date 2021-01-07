@@ -1,3 +1,10 @@
+# [1.0.0-beta.10](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2021-01-07)
+
+
+### Bug Fixes
+
+* cannot delete team member right after adding it ([034cc60](https://github.com/getmeli/meli-ui/commit/034cc608b031843e89300997ea0875c016d91c42))
+
 # [1.0.0-beta.9](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2021-01-07)
 
 
