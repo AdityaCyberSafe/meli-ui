@@ -6,6 +6,7 @@ import { ManualSslConfiguration, SiteDomain } from '../site';
 import styles from './DomainForm.module.scss';
 import { maxLength, required } from '../../../commons/components/forms/form-constants';
 import { InputError } from '../../../commons/components/forms/InputError';
+import { Hint } from '../../../commons/components/Hint';
 
 type SslConfigurationType = SiteDomain['sslConfiguration']['type'];
 
@@ -73,6 +74,7 @@ export function DomainForm({
   const input = `domains[${index}]`;
   const nameInput = `${input}.name`;
   const sslTypeToggle = `${input}.sslConfiguration.type`;
+  const exposeBranchesInput = `${input}.exposeBranches`;
 
   const sslType = watch(sslTypeToggle);
 
@@ -99,25 +101,41 @@ export function DomainForm({
           />
           <InputError error={errors} path={nameInput} />
         </div>
-        <div className="form-group flex-grow-0 flex-shrink-0 ml-2 mr-2">
-          <Controller
-            control={control}
-            name={sslTypeToggle}
-            render={({ value, onChange }) => (
-              <Toggle value={value === 'acme'} onChange={auto => onChange(auto ? 'acme' : 'manual')}>
-                Automatic SSL (ACME)
-              </Toggle>
-            )}
-            defaultValue={item?.sslConfiguration?.type ?? 'acme'}
-          />
-        </div>
         <div className="form-group col flex-grow-0">
           <button type="button" className="btn btn-danger" onClick={() => remove()}>
             Delete
           </button>
         </div>
       </div>
-      <Config sslType={sslType} input={input} item={item} />
+      <div className="form-group">
+        <Controller
+          control={control}
+          name={exposeBranchesInput}
+          render={({ value, onChange }) => (
+            <Toggle value={value} onChange={onChange}>
+              Expose branches
+              {' '}
+              <Hint className="ml-2">Subdomains will be created for each branch</Hint>
+            </Toggle>
+          )}
+          defaultValue={item?.exposeBranches}
+        />
+      </div>
+      <div className="form-group">
+        <Controller
+          control={control}
+          name={sslTypeToggle}
+          render={({ value, onChange }) => (
+            <Toggle value={value === 'acme'} onChange={auto => onChange(auto ? 'acme' : 'manual')}>
+              Automatic SSL (ACME)
+            </Toggle>
+          )}
+          defaultValue={item?.sslConfiguration?.type ?? 'acme'}
+        />
+        <div className="mt-3">
+          <Config sslType={sslType} input={input} item={item} />
+        </div>
+      </div>
     </div>
   );
 }

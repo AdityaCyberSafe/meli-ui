@@ -4,6 +4,7 @@ export interface SiteDomain {
   _id: string;
   name: string;
   sslConfiguration: SslConfiguration;
+  exposeBranches?: boolean;
 }
 
 export type SslConfiguration =
