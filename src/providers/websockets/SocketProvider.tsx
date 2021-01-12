@@ -17,10 +17,8 @@ export function SocketProvider(props) {
       socketRef.current.close();
     }
     const url = new URL(env.MELI_API_URL);
-    const sock: SocketIOClient.Socket = openSocket({
-      host: url.host,
+    const sock: SocketIOClient.Socket = openSocket(env.MELI_API_URL, {
       path: `${url.pathname}/socket.io`.replace(/\/+/g, '/'),
-      secure: url.protocol === 'https:',
     });
     socketRef.current = sock;
     setSocket(sock);
