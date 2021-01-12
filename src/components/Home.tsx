@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Logo } from './Logo';
+import { AppLogo } from './AppLogo';
 import styles from './Home.module.scss';
 
 export function Home() {
   return (
     <div className={styles.container}>
-      <Logo className={styles.logo} />
+      <AppLogo className={styles.logo} />
       <p className="mt-2">Deploy, now.</p>
       <div className={classNames(styles.inspire, 'mt-5')}>
         <p>

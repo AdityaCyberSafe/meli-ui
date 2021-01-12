@@ -26,6 +26,7 @@ export interface Site {
   teamId: string;
   name: string;
   color: string;
+  logo?: string;
   createdAt: Date;
   updatedAt: Date;
   mainBranch: string;

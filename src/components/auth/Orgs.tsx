@@ -37,7 +37,7 @@ function OrgItem({ item }: {
       onClick={selectOrg}
     >
       <div className="d-flex align-items-center">
-        <Bubble color={item.org.color} className="mr-3" />
+        <Bubble color={item.org.color} src={item.org.logo} className="mr-3" />
         <strong>{item.org.name}</strong>
       </div>
       {loading && (

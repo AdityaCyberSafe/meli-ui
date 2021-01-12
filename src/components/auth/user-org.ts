@@ -1,9 +1,7 @@
+import { Org } from '../orgs/org';
+
 export interface UserOrg {
-  org: {
-    _id: string;
-    name: string;
-    color: string;
-  };
+  org: Org;
   member: {
     userId: string;
     admin: boolean;

@@ -41,7 +41,7 @@ export function UserInviteView({ invite, token }: {
       <h2>You're invited !</h2>
       <p>You are invited to join the workspace</p>
       <div className={styles.org}>
-        <Bubble color={invite.org.color} className="mr-3" />
+        <Bubble color={invite.org.color} src={invite.org.logo} className="mr-3" />
         <strong>{invite.org.name}</strong>
       </div>
       {invite.memberOptions.admin && (

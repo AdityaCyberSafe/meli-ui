@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Env, useEnv } from './EnvProvider';
+import { useEnv } from './EnvProvider';
 import { axios } from './axios';
 import { emitNowAndOnReconnect } from './websockets/listen';
 import { useSocket } from './websockets/SocketProvider';
@@ -23,7 +23,7 @@ interface OrgContext {
   initialized: boolean;
   loading: boolean;
   currentOrg: CurrentOrg;
-  setOrg: (org: CurrentOrg) => void;
+  setCurrentOrg: (currentOrg: CurrentOrg) => void;
   changeCurrentOrg: (orgId: string) => Promise<void>;
   signOutOrg: () => void;
 }
@@ -48,12 +48,12 @@ export function OrgProvider(props) {
     routerHistory.push('/orgs');
   };
 
-  const changeCurrentOrg = (environment: Env, orgId: string) => {
+  const changeCurrentOrg = useCallback((orgId: string) => {
     setLoading(true);
     return Promise
       .all([
-        axios.get<Org>(`${environment.MELI_API_URL}/api/v1/orgs/${orgId}`),
-        axios.get<OrgMember>(`${environment.MELI_API_URL}/api/v1/orgs/${orgId}/member`),
+        axios.get<Org>(`${env.MELI_API_URL}/api/v1/orgs/${orgId}`),
+        axios.get<OrgMember>(`${env.MELI_API_URL}/api/v1/orgs/${orgId}/member`),
       ])
       .then(([{ data: org }, { data: member }]) => {
         const newCurrentOrg: CurrentOrg = {
@@ -70,12 +70,12 @@ export function OrgProvider(props) {
         setInitialized(true);
         setLoading(false);
       });
-  };
+  }, [env]);
 
   useEffect(() => {
     const orgId = localStorage.getItem(storageKey);
     if (user && orgId) {
-      changeCurrentOrg(env, orgId)
+      changeCurrentOrg(orgId)
         .catch(err => {
           toast(`Could not get current org: ${err}`, {
             type: 'error',
@@ -86,13 +86,22 @@ export function OrgProvider(props) {
       setInitialized(true);
       setLoading(false);
     }
-  }, [env, setLoading, user]);
+  }, [env, setLoading, user, changeCurrentOrg]);
 
   useEffect(() => {
     if (currentOrg && socket) {
       return emitNowAndOnReconnect(socket, () => socket.emit('join.org', currentOrg.org._id));
     }
   }, [currentOrg, socket]);
+
+  const contextValue: OrgContext = {
+    initialized,
+    loading,
+    currentOrg,
+    setCurrentOrg,
+    changeCurrentOrg,
+    signOutOrg,
+  };
 
   return !initialized ? (
     <FullPageCentered>
@@ -103,13 +112,7 @@ export function OrgProvider(props) {
     </FullPageCentered>
   ) : (
     <Context.Provider
-      value={{
-        initialized,
-        loading,
-        currentOrg,
-        changeCurrentOrg: org => changeCurrentOrg(env, org),
-        signOutOrg,
-      }}
+      value={contextValue}
       {...props}
     />
   );

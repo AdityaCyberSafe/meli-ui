@@ -21,7 +21,6 @@ import { TokenIcon } from '../icons/TokenIcon';
 import { SettingsIcon } from '../icons/SettingsIcon';
 import { BranchIcon } from '../icons/BranchIcon';
 import { ButtonIcon } from '../../commons/components/ButtonIcon';
-import { SiteSettings } from './settings/SiteSettings';
 import { useMountedState } from '../../commons/hooks/use-mounted-state';
 import { HookIcon } from '../icons/HookIcon';
 import { HookProvider } from '../hooks/HookProvider';
@@ -30,6 +29,7 @@ import { Branches } from './branches/Branches';
 import { Tokens } from './tokens/Tokens';
 import { Releases } from './releases/Releases';
 import { ReleaseIcon } from '../icons/ReleaseIcon';
+import { SiteSettings } from './settings/SiteSettings';
 
 interface SiteContext {
   site: Site;
@@ -71,7 +71,7 @@ export function SiteView() {
           <SubHeader className="d-flex align-items-center justify-content-between">
             <div className="d-flex align-items-center">
               <h5 className="mb-0 d-flex align-items-center">
-                <Bubble color={site.color} />
+                <Bubble color={site.color} src={site.logo} />
                 <span className="ml-2">{site.name}</span>
               </h5>
               <ExternalLink href={site.url} className="ml-3">

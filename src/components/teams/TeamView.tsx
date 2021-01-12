@@ -1,9 +1,5 @@
-import React, {
-  createContext, useContext, useEffect, useState,
-} from 'react';
-import {
-  Redirect, Route, Switch, useParams, useRouteMatch,
-} from 'react-router-dom';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Redirect, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { uniqueId } from 'lodash';
@@ -26,8 +22,8 @@ import { SiteIcon } from '../icons/SiteIcon';
 import { TeamMemberIcon } from '../icons/TeamMemberIcon';
 import { SiteList } from '../sites/SiteList';
 import { Members } from './members/Members';
-import { TeamSettings } from './settings/TeamSettings';
 import { useMountedState } from '../../commons/hooks/use-mounted-state';
+import { TeamSettings } from './settings/TeamSettings';
 
 interface TeamContext {
   team: Team;
@@ -73,7 +69,7 @@ export function TeamView() {
             <SubHeader className="d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center">
                 <h5 className="mb-0 d-flex align-items-center">
-                  <Bubble color={team.color} />
+                  <Bubble color={team.color} src={team.logo} />
                   <span className="ml-2">{team.name}</span>
                 </h5>
               </div>

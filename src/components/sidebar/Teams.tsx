@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -32,7 +30,7 @@ function TeamSection({ team, className }: { team: Team; className? }) {
           to={`/teams/${team._id}`}
           activeClassName={styles.active}
         >
-          <Bubble color={team.color} />
+          <Bubble color={team.color} src={team.logo} />
           <span className="ml-2 text-uppercase">{team.name}</span>
         </NavLink>
         <div>

@@ -1,13 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './ButtonIcon.module.scss';
+import { Loader } from './Loader';
 
 export function ButtonIcon({
-  children, className, onClick, ...props
+  children, className, onClick, loading, ...props
 }: {
   children: any;
   className?: string;
   onClick?: (ev) => void;
+  loading?: boolean;
   [props: string]: any;
 }) {
   return (
@@ -16,7 +18,11 @@ export function ButtonIcon({
       onClick={onClick}
       {...props}
     >
-      {children}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>{children}</>
+      )}
     </div>
   );
 }

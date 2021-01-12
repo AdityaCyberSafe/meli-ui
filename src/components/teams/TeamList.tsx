@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { uniqueId } from 'lodash';
@@ -88,7 +86,7 @@ export function TeamList() {
               <Link to={`/teams/${team._id}`} className="d-block" key={team._id}>
                 <li className="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <Bubble color={team.color} />
+                    <Bubble color={team.color} src={team.logo} />
                     <span className="ml-2">{team.name}</span>
                   </div>
                   <div className="d-flex align-items-center">

@@ -3,6 +3,7 @@ export interface UserInvite {
   org: {
     name: string;
     color: string;
+    logo?: string;
   };
   expiresAt: Date;
   memberOptions: {

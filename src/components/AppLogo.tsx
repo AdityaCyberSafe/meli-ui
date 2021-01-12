@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './Logo.module.scss';
 
-export function Logo({ className }: { className? }) {
+export function AppLogo({ className }: { className? }) {
   return (
     <div className={classNames(styles.logo, className)}>
       <svg viewBox="0 0 409 150" fill="none" xmlns="http://www.w3.org/2000/svg">

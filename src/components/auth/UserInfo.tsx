@@ -12,11 +12,7 @@ import { Dropdown, dropdownToggle } from '../../commons/components/dropdown/Drop
 import { UserIcon } from '../icons/UserIcon';
 import { OrgIcon } from '../icons/OrgIcon';
 import { IsAdmin } from './IsAdmin';
-
-function shortenNameWithoutCss(str: string) {
-  const name = str || '?';
-  return name.length > 10 ? `${name.substr(0, 10)}...` : name;
-}
+import { Bubble } from '../../commons/components/Bubble';
 
 export function UserInfo({ className }: {
   className?: string;
@@ -31,19 +27,17 @@ export function UserInfo({ className }: {
         {...dropdownToggle(uid)}
       >
         {currentOrg && (
-          <div
-            className={classNames(styles.bubble, styles[user.authType])}
-            style={{
-              backgroundColor: currentOrg.org.color,
-            }}
-          >
-            <div>
-              {currentOrg.org.name.substr(0, 1).toUpperCase()}
-            </div>
-          </div>
+          <Bubble color={currentOrg.org.color} src={currentOrg.org.logo} className={styles.bubble} />
         )}
         <div className={classNames(styles.user, 'ml-3')}>
-          {shortenNameWithoutCss(user.name)}
+          {currentOrg && (
+            <div className="font-weight-bold">
+              {currentOrg.org.name}
+            </div>
+          )}
+          <div className="text-muted">
+            {user.name}
+          </div>
         </div>
       </div>
       <Dropdown id={uid} data-event-off="click">

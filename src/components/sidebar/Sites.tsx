@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -82,7 +80,7 @@ export function Sites({ teamId, className }: { teamId; className? }) {
               className={styles.site}
               activeClassName={styles.active}
             >
-              <Bubble color={site.color} />
+              <Bubble color={site.color} src={site.logo} />
               <span className="ml-2">{site.name}</span>
             </NavLink>
           ))
