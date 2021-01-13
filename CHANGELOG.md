@@ -1,3 +1,16 @@
+# [1.0.0-beta.11](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2021-01-13)
+
+
+### Bug Fixes
+
+* socket.io hostname option not used ([9f70026](https://github.com/getmeli/meli-ui/commit/9f70026782534cab68a0dbc8efad4dd7a85b0802))
+
+
+### Features
+
+* expose branches on custom domain getmeli/meli[#165](https://github.com/getmeli/meli-ui/issues/165) ([dbda565](https://github.com/getmeli/meli-ui/commit/dbda565b3d7a17daba8ce4459e83e8992185875e))
+* logos ([#4](https://github.com/getmeli/meli-ui/issues/4)) ([48e4a35](https://github.com/getmeli/meli-ui/commit/48e4a35a58fa763d4aa4733f7b9ac38406d8ad72))
+
 # [1.0.0-beta.10](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2021-01-07)
 
 
