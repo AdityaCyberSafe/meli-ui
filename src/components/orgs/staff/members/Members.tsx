@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AlertError } from '../../../../commons/components/AlertError';
 import { LoadMore } from '../../../../commons/components/LoadMore';
@@ -116,7 +114,7 @@ export function Members() {
               loading={searching}
               search={searchQuery.search}
               setSearch={setSearch}
-              placeholder="Search releases"
+              placeholder="Search members"
             />
           </div>
         </div>
