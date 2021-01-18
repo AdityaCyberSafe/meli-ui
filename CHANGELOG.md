@@ -1,3 +1,10 @@
+# [1.0.0-beta.12](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2021-01-18)
+
+
+### Bug Fixes
+
+* typo in org member search input ([c43fb61](https://github.com/getmeli/meli-ui/commit/c43fb612f343c26f6cda73de0f89184b61fd987c))
+
 # [1.0.0-beta.11](https://github.com/getmeli/meli-ui/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2021-01-13)
 
 
