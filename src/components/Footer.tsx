@@ -11,7 +11,7 @@ export function Footer() {
       <footer className={styles.footer}>
         <div>
           <ExternalLink
-            href="https://twitter.com/MELI_sh"
+            href="https://twitter.com/getmeli"
             className={styles.link}
           >
             Twitter
